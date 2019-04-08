@@ -1,0 +1,70 @@
+package chromeBrowser;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LaunchApplication {
+	
+	public static void main(String[] args)
+	{
+		System.setProperty("webdriver.chrome.driver","D:\\Softwares\\selenium\\chromedriver.exe");
+		WebDriver driver= new ChromeDriver();
+		driver.get("http://www.flipkart.com/");
+		driver.manage().window().maximize();
+    //please change your mobile number and password to login
+		driver.findElement(By.xpath("//input[@class='_2zrpKA']")).sendKeys("mobile no.");
+		driver.findElement(By.xpath("//input[@class='_2zrpKA _3v41xv']")).sendKeys("pw");
+		driver.findElement(By.xpath("//button[@class='_2AkmmA _1LctnI _7UHT_c']")).click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("//input[@class='LM6RPg']")).sendKeys("Lenovo laptop");
+		driver.findElement(By.xpath("//button[@class='vh79eN']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//getting price details
+		WebElement priceElement=driver.findElement(By.xpath("(//div[@class='_1vC4OE _2rQ-NK'])[1]"));
+		String price=priceElement.getText();
+		System.out.println("Price of laptop:"+price);
+		//getting review
+		WebElement ratingElement=driver.findElement(By.xpath("(//div[@class='hGSR34'])[1]"));
+		String rating=ratingElement.getText();
+		System.out.println("Rating of laptop:"+rating);
+		//getting specifications
+		WebElement specElement=driver.findElement(By.xpath("(//ul[@class='vFw0gD'])[1]"));
+		String specifications=specElement.getText();
+		System.out.println("Specifications of laptop:"+specifications);
+		driver.findElement(By.xpath("(//div[@class='_3wU53n'])[1]")).click();
+		try {
+			Thread.sleep(15000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		/*JavascriptExecutor jse=(JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,700)","");*/
+		
+		driver.findElement(By.xpath("//input[@class='_3X4tVa']")).click();
+		driver.findElement(By.xpath("//input[@class='_3X4tVa']")).clear();
+		driver.findElement(By.xpath("//input[@class='_3X4tVa']")).sendKeys("503001");
+		driver.findElement(By.xpath("//button[@class='_2AkmmA _2Npkh4 _2kuvG8 _7UHT_c']")).click();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}
